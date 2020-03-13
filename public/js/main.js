@@ -59,6 +59,33 @@ const $ = function (foo) {
                     <b>Breddegrad/Latitude:</b> ${lat} <br>
                     <b>Længdegrad/Longitude:</b> ${lng} <br>
                 </p>` 
+                var lng =  44.58000
+            var lat = 22.19964
+
+                let xhr = new XMLHttpRequest()
+                xhr.open("GET", "https://mastedatabasen.dk/Master/antenner/55.700677,12.59074.json", true);
+                //xhr.open("GET", "https://mastedatabasen.dk/Master/antenner/"+lng+","+lng+".json", true);
+
+
+
+                xhr.addEventListener("load", function() {
+                    let obj = JSON.parse(xhr.responseText);
+                    //console.log(obj);
+                    var drift = obj.idriftsaettelsesdato;
+                    var nr = obj.husnr;
+                    var gade = obj.vejnavn.navn
+                    var by = obj.postnummer.navn;
+
+                    $("company").innerHTML += `<h3>Næremste mast</h3>
+                    <p>
+                        <b>Gade:</b> ${gade} ${nr}<br>
+                        <b>By: </b> ${by} <br>
+                        <b>Idræftsættelsedato: </b> ${drift}
+                    </p>`
+                    
+                    
+                });
+                xhr.send();
             });
             var city = "kolding";
             xhrGEO.open("GET", "https://api.opencagedata.com/geocode/v1/json?q="+city+"&key=dc74b79795e34f829f7c960c29d694f2");

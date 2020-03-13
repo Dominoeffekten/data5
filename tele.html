@@ -41,16 +41,11 @@ var lat = 22.19964
 
     xhr.addEventListener("load", function() {
         let obj = JSON.parse(xhr.responseText);
-        //console.log(obj);
+        console.log(obj);
         var drift = obj.idriftsaettelsesdato;
         var nr = obj.husnr;
-
-        for(var i = 0; i <= obj.vejnavn.length; i++){
-            var gade = obj.vejnavn[i].navn;
-        }
-        for(var i = 0; i <= obj.postnummer.length; i++){
-            var by = obj.postnummer[i].navn;
-        }
+        var gade = obj.vejnavn.navn
+        var by = obj.postnummer.navn;
 
         $("placeholder").innerHTML += `<h2>Næremste mast</h2>
         <p>
