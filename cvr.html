@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Firma siden</title>
+        <link rel="stylesheet" href="public/css/style.css"/>
+    </head>
+    <body>
+        <header>
+            <h1>Firma siden</h1>
+            <a href="index.html">Home</a>
+            <a href="cvr.html">CVR nummer</a>
+            <a href="geo.html">Koordinat</a>
+            <a href="tele.html">Telefonmast</a>
+        </header>
+        <main>
+            <section>
+                <div id="company"></div>
+            </section>
+        </main>
+        <footer>
+            <p>
+                &copy; 2020
+            </p>
+        </footer>
+    </body>
+    <script>
+        "use strict";
+const $ = function (foo) {
+    return document.getElementById(foo);
+};
+
+//API CVR
+    let xhrAPi = new XMLHttpRequest()
+    xhrAPi.addEventListener("load", function() {
+        let obj = JSON.parse(xhrAPi.responseText);
+        //console.log(obj);
+
+        var navn = obj.name;
+        var city = obj.city;
+        var start = obj.startdate;
+        var pro = obj.protected;
+        var desc = obj.industrydesc;
+        var credit = obj.creditbankrupt;
+        for(var i = 0; i <= 1; i++){
+            //var owners = obj.owners[i].name;
+        }
+        if (credit == false){
+            credit = "Nej";
+        } else{
+            credit = "Ja";
+        }
+        if (pro == false){
+            pro = "Nej";
+        } else{
+            pro = "Ja";
+        }
+
+        $("company").innerHTML += `<h2>${navn}</h2>
+        <p>
+            <b>Ejer: </b> <br>
+            <b>Start dato:</b> ${start}<br> 
+            <b>By:</b> ${city} <br> 
+            <b>Beskyttet:</b> ${pro} <br>
+            <b>Konkurs:</b> ${credit} <br>
+            <b>Beskrivelse:</b> ${desc} 
+        </p>`
+        
+        
+    });
+    xhrAPi.open("GET", "https://cvrapi.dk/api?search=iDomino&country=dk");
+
+    xhrAPi.send();
+    </script>
+</html>

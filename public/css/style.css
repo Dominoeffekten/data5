@@ -1,0 +1,39 @@
+body {
+    height: auto;
+    width: 700px;
+    margin: 0 auto;
+    font-size: 18px;
+}
+html, body {
+    height: 100%;
+    margin: 0 auto;
+}
+img{
+    height: 200px;
+    width: auto;
+    margin: 0 auto;
+    margin: 20px;
+}
+header, footer p {
+    text-align: center;
+}
+main{
+    height: auto;
+}
+#cvrNum{
+    height: 20px;
+    width: 60%;
+    margin: 10px;
+}
+input[type=button]{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 4px 10px;
+  }
+footer{
+    height: 50px;
+}

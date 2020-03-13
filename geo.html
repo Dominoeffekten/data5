@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Firma siden</title>
+        <link rel="stylesheet" href="public/css/style.css"/>
+    </head>
+    <body>
+        <header>
+            <h1>GEO</h1>
+            <a href="index.html">Home</a>
+            <a href="cvr.html">CVR nummer</a>
+            <a href="geo.html">Koordinat</a>
+            <a href="tele.html">Telefonmast</a>
+        </header>
+        <main>
+            <section>
+                <div id="placeholder"></div>
+            </section>
+        </main>
+        <footer>
+            <p>
+                &copy; 2020
+            </p>
+        </footer>
+    </body>
+    <script>
+        "use strict";
+const $ = function (foo) {
+    return document.getElementById(foo);
+};
+
+//API koordinat
+    let xhr = new XMLHttpRequest()
+    xhr.addEventListener("load", function() {
+        let obj = JSON.parse(xhr.responseText);
+        //console.log(obj);
+
+        
+        //console.log(obj.results.length)
+        var r = obj.results
+        for(var i = 0; i <= r.length; i++){
+            var lat = r[0].annotations.DMS.lat;
+            var lng = r[0].annotations.DMS.lng;
+        }
+
+        $("placeholder").innerHTML += `<h2>Kolding</h2>
+        <p>
+            <b>Breddegrad/Latitude:</b> ${lat} <br>
+            <b>Længdegrad/Longitude:</b> ${lng} <br>
+        </p>`
+        
+        
+    });
+
+    xhr.open("GET", "https://api.opencagedata.com/geocode/v1/json?q=kolding&key=dc74b79795e34f829f7c960c29d694f2");
+    xhr.send();
+    </script>
+</html>
