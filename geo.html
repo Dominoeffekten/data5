@@ -32,6 +32,7 @@ const $ = function (foo) {
 
 //API koordinat
     let xhr = new XMLHttpRequest()
+    xhr.open("GET", "https://api.opencagedata.com/geocode/v1/json?q=kolding&key=dc74b79795e34f829f7c960c29d694f2");
     xhr.addEventListener("load", function() {
         let obj = JSON.parse(xhr.responseText);
         //console.log(obj);
@@ -49,11 +50,8 @@ const $ = function (foo) {
             <b>Breddegrad/Latitude:</b> ${lat} <br>
             <b>Længdegrad/Longitude:</b> ${lng} <br>
         </p>`
-        
-        
     });
-
-    xhr.open("GET", "https://api.opencagedata.com/geocode/v1/json?q=kolding&key=dc74b79795e34f829f7c960c29d694f2");
     xhr.send();
+
     </script>
 </html>

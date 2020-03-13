@@ -36,23 +36,31 @@ var lng =  44.58000
 var lat = 22.19964
 
     let xhr = new XMLHttpRequest()
-    xhr.withCredentials = true;
+    xhr.open("GET", "https://mastedatabasen.dk/Master/antenner/55.700677,12.59074.json", true);
+
 
     xhr.addEventListener("load", function() {
         let obj = JSON.parse(xhr.responseText);
         //console.log(obj);
+        var drift = obj.idriftsaettelsesdato;
+        var nr = obj.husnr;
 
-        
+        for(var i = 0; i <= obj.vejnavn.length; i++){
+            var gade = obj.vejnavn[i].navn;
+        }
+        for(var i = 0; i <= obj.postnummer.length; i++){
+            var by = obj.postnummer[i].navn;
+        }
 
-        $("placeholder").innerHTML += `<h2>Kolding</h2>
+        $("placeholder").innerHTML += `<h2>Næremste mast</h2>
         <p>
-            
+            <b>Gade:</b> ${gade} ${nr}<br>
+            <b>By: </b> ${by} <br>
+            <b>Idræftsættelsedato: </b> ${drift}
         </p>`
         
         
     });
-    //xhr.Access-Control-Allow-Origin("*");
-    xhr.open("GET", "https://mastedatabasen.dk/Master/antenner.json?postnr=6900&tjeneste=2&teknologi=7&maxantal=2");
     xhr.send();
     </script>
 </html>

@@ -54,6 +54,7 @@ const $ = function (foo) {
                 lng = lng.slice(7, 15);
 
                 $("company").innerHTML += `
+                <h3>Koordinater</h3>
                 <p>
                     <b>Breddegrad/Latitude:</b> ${lat} <br>
                     <b>Længdegrad/Longitude:</b> ${lng} <br>
